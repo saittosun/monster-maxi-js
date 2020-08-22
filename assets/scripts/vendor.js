@@ -1,3 +1,4 @@
+// jshint esversion: 9
 const monsterHealthBar = document.getElementById('monster-health');
 const playerHealthBar = document.getElementById('player-health');
 const bonusLifeEl = document.getElementById('bonus-life');
