@@ -38,33 +38,33 @@ function writeToLog(ev, val, monsterHealth, playerHealth) {
   };
   switch (ev) {
     case LOG_EVENT_PLAYER_ATTACK:
-      logEntry.target = 'MONSTER';
+      logEntry.target = "MONSTER";
       break;
     case LOG_EVENT_PLAYER_STRONG_ATTACK:
       logEntry = {
         event: ev,
         value: val,
-        target: 'MONSTER',
+        target: "MONSTER",
         finalMonsterHealth: monsterHealth,
-        finalPlayerHealth: playerHealth
+        finalPlayerHealth: playerHealth,
       };
       break;
     case LOG_EVENT_MONSTER_ATTACK:
       logEntry = {
         event: ev,
         value: val,
-        target: 'PLAYER',
+        target: "PLAYER",
         finalMonsterHealth: monsterHealth,
-        finalPlayerHealth: playerHealth
+        finalPlayerHealth: playerHealth,
       };
       break;
     case LOG_EVENT_PLAYER_HEAL:
       logEntry = {
         event: ev,
         value: val,
-        target: 'PLAYER',
+        target: "PLAYER",
         finalMonsterHealth: monsterHealth,
-        finalPlayerHealth: playerHealth
+        finalPlayerHealth: playerHealth,
       };
       break;
     case LOG_EVENT_GAME_OVER:
@@ -72,46 +72,12 @@ function writeToLog(ev, val, monsterHealth, playerHealth) {
         event: ev,
         value: val,
         finalMonsterHealth: monsterHealth,
-        finalPlayerHealth: playerHealth
+        finalPlayerHealth: playerHealth,
       };
       break;
     default:
       logEntry = {};
   }
-  // if (ev === LOG_EVENT_PLAYER_ATTACK) {
-  //   logEntry.target = "MONSTER";
-  // } else if (ev === LOG_EVENT_PLAYER_STRONG_ATTACK) {
-  //   logEntry = {
-  //     event: ev,
-  //     value: val,
-  //     target: "MONSTER",
-  //     finalMonsterHealth: monsterHealth,
-  //     finalPlayerHealth: playerHealth,
-  //   };
-  // } else if (ev === LOG_EVENT_MONSTER_ATTACK) {
-  //   logEntry = {
-  //     event: ev,
-  //     value: val,
-  //     target: "PLAYER",
-  //     finalMonsterHealth: monsterHealth,
-  //     finalPlayerHealth: playerHealth,
-  //   };
-  // } else if (ev === LOG_EVENT_PLAYER_HEAL) {
-  //   logEntry = {
-  //     event: ev,
-  //     value: val,
-  //     target: "PLAYER",
-  //     finalMonsterHealth: monsterHealth,
-  //     finalPlayerHealth: playerHealth,
-  //   };
-  // } else if (ev === LOG_EVENT_GAME_OVER) {
-  //   logEntry = {
-  //     event: ev,
-  //     value: val,
-  //     finalMonsterHealth: monsterHealth,
-  //     finalPlayerHealth: playerHealth,
-  //   };
-  // }
   battleLog.push(logEntry);
 }
 
@@ -172,15 +138,6 @@ function endRound() {
 }
 
 function attackMonster(mode) {
-  // let maxDamage;
-  // let logEvent;
-  // if (mode === MODE_ATTACK) {
-  //   maxDamage = ATTACK_VALUE;
-  //   logEvent = LOG_EVENT_PLAYER_ATTACK;
-  // } else if (mode === MODE_STRONG_ATTACK) {
-  //   maxDamage = STRONG_ATTACK_VALUE;
-  //   logEvent = LOG_EVENT_PLAYER_STRONG_ATTACK;
-  // }
   const maxDamage = mode === MODE_ATTACK ? ATTACK_VALUE : STRONG_ATTACK_VALUE;
   const logEvent =
     mode === MODE_ATTACK
@@ -220,7 +177,38 @@ function healPlayerHandler() {
 }
 
 function printLogHandler() {
-  console.log(battleLog);
+  for (let i = 0; i < 3; i++) {
+    console.log(i + " : ---------");
+  }
+  let j = 0;
+  // ustteki loop un aynisi
+  while (j < 3) {
+    console.log(i + " : ------------");
+    j++;
+  }
+
+  let k = 0;
+  do {
+    console.log(k);
+    j++;
+  } while (k < 3);
+
+  for (let i = 0; i < battleLog.length; i++) {
+    console.log(battleLog[i]);
+  }
+  // Javascript will create a brand new constant for every loop iteration not alter the previous one but create a new one and therefore you can use const because it will never be altered, it will just be recreated, so basically it's dumped after a loop iteration and then for the next iteration, a brand new one is created you could say. So we're also not redeclaring an existing constant but we're really just getting a brand new one and the old one is dumped.
+  // ustteki for loop ile ayni ciktiyi veriyor!!!!
+  for (const logEntry of battleLog) {
+    console.log(logEntry);
+  }
+  let i = 0;
+  for (const logEntry of battleLog) {
+    console.log(`#${i}`);
+    for (const key in logEntry) {
+      console.log(`${key} => ${logEntry[key]}`);
+    }
+    i++;
+  }
 }
 
 attackBtn.addEventListener("click", attackHandler);
