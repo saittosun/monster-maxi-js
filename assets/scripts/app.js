@@ -214,7 +214,7 @@ function printLogHandler() {
   // controlling loops with break
   let m = 0;
   for (const logEntry of battleLog) {
-    if (!lastLoggedEntry && lastLoggedEntry !== 0 || lastLoggedEntry < m) {
+    if ((!lastLoggedEntry && lastLoggedEntry !== 0) || lastLoggedEntry < m) {
       console.log(`#${m}`);
       for (const key in logEntry) {
         console.log(`${key} => ${logEntry[key]}`);
@@ -223,6 +223,14 @@ function printLogHandler() {
       break;
     }
     m++;
+
+    // controlling the loops with continue;
+    for (let p = 0; p < 5; p++) {
+      if (p === 3) {
+        continue;
+      }
+      console.log(p); // 0 1 2 4 we don't see 3 because there we continue and as I said, this means this code is skipped for this loop iteration,
+    }
   }
 }
 
