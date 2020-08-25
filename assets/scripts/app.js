@@ -188,11 +188,24 @@ function printLogHandler() {
     j++;
   }
 
+  // do while loops
   let k = 0;
   do {
     console.log(k);
     k++;
   } while (k < 3);
+
+  // more controlled with labeled statements
+  let n = 0;
+  outerWhile: do {
+    console.log("outer :", n);
+    innerFor: for (let o = 0; o < 5; o++) {
+      console.log("inner :", o);
+      break outerWhile;
+      // continue outerWhile; // dangerous!! infinite loop
+    }
+    n++;
+  } while (n < 3);
 
   for (let i = 0; i < battleLog.length; i++) {
     console.log(battleLog[i]);
